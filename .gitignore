@@ -1,0 +1,20 @@
+# Secrets and Environment
+.env
+backend/.env
+backend/.env.local
+
+# Dependencies
+node_modules/
+backend/node_modules/
+Skillmeter/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Debug logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
