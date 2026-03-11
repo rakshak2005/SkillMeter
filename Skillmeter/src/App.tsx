@@ -196,7 +196,6 @@ export default function App() {
   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#0d59f2]/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
   <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-    
     {/* Left Side: Dynamic Typography */}
     <div className="lg:col-span-6 space-y-8">
       <motion.div 
@@ -236,19 +235,11 @@ export default function App() {
         </motion.p>
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="flex flex-wrap gap-4"
-      >
-        {/* Shimmer Button */}
-        <button className="group relative px-8 py-4 bg-[#0d59f2] text-white text-sm font-bold rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(13,89,242,0.4)]">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
+      <motion.div className="flex flex-wrap gap-4">
+        <button className="group relative px-8 py-4 bg-[#0d59f2] text-white text-sm font-bold rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(13,89,242,0.4)]">
           Claim Your Profile
         </button>
-        
-        <button className="px-8 py-4 bg-white/5 border border-white/10 text-white text-sm font-bold rounded-2xl hover:bg-white/10 transition-all backdrop-blur-md border-b-2 border-b-white/5 active:border-b-0 active:translate-y-0.5">
+        <button className="px-8 py-4 bg-white/5 border border-white/10 text-white text-sm font-bold rounded-2xl">
           Leaderboard
         </button>
       </motion.div>
@@ -256,24 +247,11 @@ export default function App() {
 
     {/* Right Side: The "Floating" Dashboard Card */}
     <div className="lg:col-span-6 relative">
-      <motion.div
-        initial={{ opacity: 0, rotateY: 20 }}
-        animate={{ opacity: 1, rotateY: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative group"
-      >
-        {/* Decorative Background "Ghost" Cards */}
-        <div className="absolute -top-6 -right-6 w-full h-full bg-[#0d59f2]/10 rounded-[40px] border border-white/5 -z-10 group-hover:-top-8 group-hover:-right-8 transition-all duration-500" />
-        
-        <GlassCard className="p-10 rounded-[40px] flex flex-col items-center justify-center border-white/20 overflow-hidden">
-          {/* Subtle Grid Pattern inside card */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 0)', backgroundSize: '20px 20px' }} />
-          
-          <div className="relative z-10">
-            <Gauge value={84} />
-          </div>
-
-          <div className="w-full mt-10 grid grid-cols-2 gap-8 relative z-10">
+      <motion.div className="relative group">
+        <div className="absolute -top-6 -right-6 w-full h-full bg-[#0d59f2]/10 rounded-[40px] border border-white/5 -z-10" />
+        <GlassCard className="p-10 rounded-[40px] flex flex-col items-center justify-center border-white/20">
+          <Gauge value={84} />
+          <div className="w-full mt-10 grid grid-cols-2 gap-8">
             <div className="text-center p-4 rounded-2xl bg-white/5 border border-white/5">
               <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Current Rank</p>
               <p className="text-3xl font-mono font-bold text-[#00f2ff]">#42</p>
