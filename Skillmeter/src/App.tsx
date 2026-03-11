@@ -6,19 +6,15 @@ import {
   ShieldCheck, 
   Briefcase, 
   History, 
-  Layout, 
   Activity, 
   Cpu, 
   Zap, 
   Award, 
-  Search,
   CheckCircle2,
   ExternalLink,
-  ChevronRight,
   Loader2,
   TrendingUp,
   Map,
-  ShieldAlert
 } from 'lucide-react';
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
 
@@ -46,7 +42,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => (
 );
 
 /**
- * GlassCard component with interactive tilt effect using Framer Motion
+ * GlassCard component with deep curved edges and interactive tilt effect
  */
 const GlassCard: React.FC<GlassCardProps> = ({ children, className = "" }) => {
   const x = useMotionValue(0);
@@ -86,9 +82,10 @@ const GlassCard: React.FC<GlassCardProps> = ({ children, className = "" }) => {
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative bg-white/[0.03] backdrop-blur-xl border border-white/10 transition-all duration-300 hover:border-[#0d59f2]/40 hover:shadow-[0_0_30px_rgba(13,89,242,0.1)] ${className}`}
+      // Increased rounded corners to 2.5rem (40px) for a premium look
+      className={`relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2.5rem] transition-all duration-500 hover:border-[#0d59f2]/40 hover:shadow-[0_0_40px_rgba(13,89,242,0.15)] overflow-hidden ${className}`}
     >
-      <div style={{ transform: "translateZ(20px)" }}>
+      <div style={{ transform: "translateZ(25px)" }} className="h-full">
         {children}
       </div>
     </motion.div>
@@ -164,7 +161,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#0A0A0B]/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#0d59f2] rounded-lg flex items-center justify-center shadow-lg shadow-[#0d59f2]/20">
+            <div className="w-8 h-8 bg-[#0d59f2] rounded-xl flex items-center justify-center shadow-lg shadow-[#0d59f2]/20">
               <BarChart3 className="w-5 h-5 text-white" />
             </div>
             <span className="font-bold text-lg tracking-tight">Skillmeter</span>
@@ -180,7 +177,7 @@ export default function App() {
             <button className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">
               Log in
             </button>
-            <button className="px-5 py-2 text-sm font-bold bg-[#0d59f2] text-white rounded-lg shadow-lg shadow-[#0d59f2]/20 hover:bg-[#0d59f2]/90 transition-all">
+            <button className="px-5 py-2 text-sm font-bold bg-[#0d59f2] text-white rounded-xl shadow-lg shadow-[#0d59f2]/20 hover:bg-[#0d59f2]/90 transition-all">
               Sign Up
             </button>
           </div>
@@ -190,179 +187,91 @@ export default function App() {
       {/* Main Content */}
       <main className="relative z-10 pt-32 pb-24 px-6 max-w-7xl mx-auto">
         
-        {/* Hero Section - The "Wow" Version */}
-<section className="relative mb-24 mt-8 lg:mt-12">
-  {/* Ambient Background Glow */}
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#0d59f2]/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
+        {/* Hero Section */}
+        <section className="relative mb-24 mt-8 lg:mt-12">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#0d59f2]/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-    {/* Left Side: Dynamic Typography */}
-    <div className="lg:col-span-6 space-y-8">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-[#00f2ff] bg-white/5 border border-white/10 rounded-full backdrop-blur-md"
-      >
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f2ff] opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00f2ff]"></span>
-        </span>
-        Vercel-Verified Protocol v2.0
-      </motion.div>
-      
-      <div className="space-y-4">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
-        >
-          <span className="text-white">Prove Your </span>
-          <span className="bg-gradient-to-r from-[#0d59f2] via-[#00f2ff] to-[#0d59f2] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-            Skills.
-          </span>
-          <br />
-          <span className="text-white/90">Get Recognized.</span>
-        </motion.h1>
-        
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="max-w-lg text-lg text-gray-400 leading-relaxed"
-        >
-          A data-driven intelligence layer for developers. Analyze your code, 
-          track your consistency, and unlock your true hire-readiness score.
-        </motion.p>
-      </div>
-
-      <motion.div className="flex flex-wrap gap-4">
-        <button className="group relative px-8 py-4 bg-[#0d59f2] text-white text-sm font-bold rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(13,89,242,0.4)]">
-          Claim Your Profile
-        </button>
-        <button className="px-8 py-4 bg-white/5 border border-white/10 text-white text-sm font-bold rounded-2xl">
-          Leaderboard
-        </button>
-      </motion.div>
-    </div>
-
-    {/* Right Side: The "Floating" Dashboard Card */}
-    <div className="lg:col-span-6 relative">
-      <motion.div className="relative group">
-        <div className="absolute -top-6 -right-6 w-full h-full bg-[#0d59f2]/10 rounded-[40px] border border-white/5 -z-10" />
-        <GlassCard className="p-10 rounded-[40px] flex flex-col items-center justify-center border-white/20">
-          <Gauge value={84} />
-          <div className="w-full mt-10 grid grid-cols-2 gap-8">
-            <div className="text-center p-4 rounded-2xl bg-white/5 border border-white/5">
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Current Rank</p>
-              <p className="text-3xl font-mono font-bold text-[#00f2ff]">#42</p>
-            </div>
-            <div className="text-center p-4 rounded-2xl bg-white/5 border border-white/5">
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Percentile</p>
-              <p className="text-3xl font-mono font-bold text-white">Top 2%</p>
-            </div>
-          </div>
-        </GlassCard>
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-        {/* Info Grid */}
-        <section className="mb-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <GlassCard className="p-8">
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <ExternalLink className="w-5 h-5 text-[#00f2ff]" />
-                  What Students Connect
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    { icon: Code2, label: "GitHub repositories" },
-                    { icon: Terminal, label: "Coding challenge results" },
-                    { icon: ShieldCheck, label: "Verified certificates" },
-                    { icon: Briefcase, label: "Professional Resume" },
-                    { icon: History, label: "GitHub activity and commits" },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                      <item.icon className="w-4 h-4 text-[#0d59f2]" />
-                      {item.label}
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
-
-              <GlassCard className="p-8">
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <Activity className="w-5 h-5 text-[#00f2ff]" />
-                  Analysis Engine
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    { icon: Cpu, label: "Code quality and architecture" },
-                    { icon: TrendingUp, label: "Commit consistency" },
-                    { icon: Map, label: "System design patterns" },
-                    { icon: Zap, label: "Project impact" },
-                    { icon: Award, label: "Certification credibility" },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                      <item.icon className="w-4 h-4 text-[#0d59f2]" />
-                      {item.label}
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
-            </div>
-
-            <GlassCard className="p-8 flex flex-col h-full">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold">What Recruiters See</h3>
-                <p className="text-sm text-gray-500 mt-1">Data-driven developer credibility dashboard</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6 space-y-8">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-[#00f2ff] bg-white/5 border border-white/10 rounded-full backdrop-blur-md"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f2ff] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00f2ff]"></span>
+                </span>
+                Vercel-Verified Protocol v2.0
+              </motion.div>
+              
+              <div className="space-y-4">
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
+                >
+                  <span className="text-white">Prove Your </span>
+                  <span className="bg-gradient-to-r from-[#0d59f2] via-[#00f2ff] to-[#0d59f2] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                    Skills.
+                  </span>
+                  <br />
+                  <span className="text-white/90">Get Recognized.</span>
+                </motion.h1>
+                
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="max-w-lg text-lg text-gray-400 leading-relaxed"
+                >
+                  A data-driven intelligence layer for developers. Analyze your code, 
+                  track your consistency, and unlock your true hire-readiness score.
+                </motion.p>
               </div>
-              <div className="flex-1 space-y-3">
-                {[
-                  { label: "Hire Readiness Score", value: "84%", type: "bar" },
-                  { label: "Architecture Score", value: "98/100" },
-                  { icon: CheckCircle2, label: "System Design Strength", value: "VALIDATED", special: true },
-                  { label: "Code Quality Index", value: "91%" },
-                  { label: "Consistency Score", value: "92/100" },
-                  { label: "Certification Verification", value: "Verified", icon: ShieldCheck },
-                  { label: "Top Project Impact", value: "2.4k stars" },
-                ].map((row, i) => (
-                  <div key={i} className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm text-gray-300">{row.label}</span>
+
+              <motion.div className="flex flex-wrap gap-4">
+                <button className="px-8 py-4 bg-[#0d59f2] text-white text-sm font-bold rounded-[1.25rem] shadow-[0_0_20px_rgba(13,89,242,0.4)] hover:bg-[#0d59f2]/90 transition-all">
+                  Claim Your Profile
+                </button>
+                <button className="px-8 py-4 bg-white/5 border border-white/10 text-white text-sm font-bold rounded-[1.25rem] hover:bg-white/10 transition-all">
+                  Leaderboard
+                </button>
+              </motion.div>
+            </div>
+
+            <div className="lg:col-span-6 relative">
+              <motion.div className="relative group">
+                <div className="absolute -top-6 -right-6 w-full h-full bg-[#0d59f2]/10 rounded-[3.5rem] border border-white/5 -z-10" />
+                <GlassCard className="p-10 flex flex-col items-center justify-center border-white/20">
+                  <Gauge value={84} />
+                  <div className="w-full mt-10 grid grid-cols-2 gap-8">
+                    <div className="text-center p-4 rounded-3xl bg-white/5 border border-white/5">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Current Rank</p>
+                      <p className="text-3xl font-mono font-bold text-[#00f2ff]">#42</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {row.type === 'bar' && (
-                        <div className="w-24 h-1 bg-[#0d59f2]/20 rounded-full overflow-hidden mr-2">
-                          <div className="bg-[#00f2ff] h-full w-[84%]" />
-                        </div>
-                      )}
-                      {row.icon && <row.icon className="w-4 h-4 text-[#00f2ff]" />}
-                      <span className={`text-xs font-mono ${row.special ? 'text-green-400 font-bold' : 'text-[#0d59f2]'}`}>
-                        {row.value}
-                      </span>
+                    <div className="text-center p-4 rounded-3xl bg-white/5 border border-white/5">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Percentile</p>
+                      <p className="text-3xl font-mono font-bold text-white">Top 2%</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </GlassCard>
+                </GlassCard>
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           
-          {/* Main Readiness Score */}
-          <GlassCard className="md:col-span-8 p-10 flex flex-col items-center justify-between group overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d59f2] to-transparent opacity-30" />
+          {/* Main Score Card */}
+          <GlassCard className="md:col-span-8 p-10 flex flex-col items-center justify-between">
             <div className="w-full flex justify-between items-start mb-12">
               <div>
                 <h3 className="text-2xl font-bold mb-1">Hire Readiness Score</h3>
                 <p className="text-sm text-gray-500">Aggregate verification from 14 coding signals</p>
               </div>
-              <div className="px-3 py-1 bg-[#0d59f2]/10 border border-[#0d59f2]/20 rounded-md text-[#00f2ff] text-xs font-mono">
+              <div className="px-3 py-1 bg-[#0d59f2]/10 border border-[#0d59f2]/20 rounded-xl text-[#00f2ff] text-xs font-mono">
                 STABLE
               </div>
             </div>
@@ -375,15 +284,15 @@ export default function App() {
                 { label: "Consistency", score: "92", sub: "Last 12mo Activity" },
                 { label: "Velocity", score: "TOP 2%", sub: "Cycle Time: 4.2h" },
               ].map((metric, i) => (
-                <div key={i} className="text-center group/metric cursor-help">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-2 group-hover/metric:text-[#00f2ff] transition-colors">
+                <div key={i} className="text-center group cursor-help">
+                  <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-2 group-hover:text-[#00f2ff] transition-colors">
                     {metric.label}
                   </p>
                   <div className="flex items-center justify-center gap-1">
                     <span className="text-2xl font-mono text-white">{metric.score}</span>
                     {metric.score.length < 3 && <span className="text-xs text-gray-600">/100</span>}
                   </div>
-                  <div className="text-[9px] text-gray-500 mt-1 opacity-0 group-hover/metric:opacity-100 transition-opacity">
+                  <div className="text-[9px] text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     {metric.sub}
                   </div>
                 </div>
@@ -391,7 +300,7 @@ export default function App() {
             </div>
           </GlassCard>
 
-          {/* Intelligence Column */}
+          {/* Intelligence distribution */}
           <GlassCard className="md:col-span-4 p-8 flex flex-col gap-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 text-gray-300 font-bold">
@@ -401,11 +310,11 @@ export default function App() {
               <span className="text-[10px] text-gray-500 font-mono tracking-widest uppercase">Verified</span>
             </div>
 
-            <div>
-              <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3">Impact Distribution</div>
-              <div className="flex gap-1 overflow-hidden h-2.5">
+            <div className="space-y-4">
+              <div className="text-[10px] text-gray-500 uppercase tracking-widest">Impact Distribution</div>
+              <div className="flex gap-1.5 overflow-hidden h-3">
                 {[1, 4, 10, 2, 6, 8, 1, 3, 10, 9, 2, 5].map((level, i) => (
-                  <div key={i} className="flex-1 rounded-sm" style={{ 
+                  <div key={i} className="flex-1 rounded-full" style={{ 
                     backgroundColor: `rgba(13, 89, 242, ${level/10})`,
                     border: level > 1 ? '1px solid rgba(255,255,255,0.05)' : 'none'
                   }} />
@@ -414,29 +323,27 @@ export default function App() {
             </div>
 
             <div className="space-y-3">
-              <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg border border-white/5">
+              <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
                 <span className="text-xs text-gray-400">Quality Index</span>
                 <span className="font-mono text-sm text-[#00f2ff]">91%</span>
               </div>
-              <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg border border-white/5">
+              <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
                 <span className="text-xs text-gray-400">Maintainability</span>
                 <span className="font-mono text-sm text-green-400">Grade A</span>
               </div>
             </div>
 
-            <div className="p-4 bg-[#0d59f2]/5 border border-[#0d59f2]/20 rounded-lg">
+            <div className="mt-auto p-5 bg-[#0d59f2]/5 border border-[#0d59f2]/20 rounded-2xl">
               <div className="text-[9px] text-[#0d59f2]/60 uppercase font-bold tracking-widest mb-1">Top Impact Project</div>
               <div className="flex justify-between items-end">
-                <span className="text-sm font-bold">Realtime Trading Engine</span>
-                <span className="text-xs text-[#00f2ff] font-mono flex items-center gap-1">
-                  ★ 2.4k
-                </span>
+                <span className="text-sm font-bold">Trading Engine</span>
+                <span className="text-xs text-[#00f2ff] font-mono flex items-center gap-1">★ 2.4k</span>
               </div>
             </div>
           </GlassCard>
 
           {/* Certificate Vault */}
-          <GlassCard className="md:col-span-5 p-8 flex flex-col justify-between overflow-hidden">
+          <GlassCard className="md:col-span-5 p-8 flex flex-col justify-between">
             <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-[#00f2ff]/5 rounded-full blur-3xl" />
             <div>
               <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
@@ -444,16 +351,16 @@ export default function App() {
                 Certificate Vault
               </h3>
               <div className="space-y-4">
-                <div className="p-5 bg-white/5 border border-white/10 rounded-xl flex items-center justify-between hover:bg-white/10 transition-all">
+                <div className="p-5 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between hover:bg-white/10 transition-all">
                   <div>
                     <p className="text-base font-semibold">Cloud Architect Pro</p>
                     <p className="text-[10px] text-[#00f2ff]/70 font-mono mt-1 uppercase">ID: AWS-9823-PRO-01</p>
                   </div>
-                  <button className="px-4 py-2 bg-[#0d59f2]/20 border border-[#0d59f2]/30 text-[#00f2ff] text-[10px] font-bold uppercase rounded-md hover:bg-[#0d59f2] hover:text-white transition-all">
+                  <button className="px-4 py-2 bg-[#0d59f2]/20 border border-[#0d59f2]/30 text-[#00f2ff] text-[10px] font-bold uppercase rounded-xl hover:bg-[#0d59f2] hover:text-white transition-all">
                     Verify
                   </button>
                 </div>
-                <div className="p-5 bg-white/5 border border-white/10 rounded-xl flex items-center justify-between opacity-50 grayscale">
+                <div className="p-5 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between opacity-50 grayscale">
                   <div>
                     <p className="text-base font-semibold">Security Specialist</p>
                     <p className="text-[10px] text-gray-500 uppercase">Verification Pending...</p>
@@ -467,7 +374,6 @@ export default function App() {
 
           {/* Pipeline Card */}
           <GlassCard className="md:col-span-7 p-8 relative overflow-hidden">
-            {/* Scanner Bar Effect */}
             <motion.div 
               animate={{ top: ['0%', '100%', '0%'] }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -495,7 +401,7 @@ export default function App() {
                         {item.label2 || `${item.val}%`}
                       </span>
                     </div>
-                    <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: `${item.val}%` }}
@@ -508,38 +414,13 @@ export default function App() {
                   </div>
                 ))}
                 
-                <div className="p-4 bg-[#0d59f2]/5 border border-[#0d59f2]/10 rounded-lg flex items-center gap-4">
+                <div className="p-5 bg-[#0d59f2]/5 border border-[#0d59f2]/10 rounded-2xl flex items-center gap-4 mt-auto">
                   <Loader2 className="w-5 h-5 text-[#00f2ff] animate-spin" />
                   <span className="text-[11px] font-mono text-gray-400 uppercase tracking-tighter">
                     Heuristic matching on core infrastructure (queued)
                   </span>
                 </div>
               </div>
-            </div>
-          </GlassCard>
-
-          {/* Radar Column */}
-          <GlassCard className="md:col-span-4 p-8 flex flex-col gap-8">
-            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Skill Distribution</h3>
-            <div className="relative w-full aspect-square flex items-center justify-center">
-              <svg className="w-full h-full p-4" viewBox="0 0 100 100">
-                <polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-                <polygon points="50,25 75,50 50,75 25,50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-                {/* Visual Skill Shape */}
-                <motion.polygon 
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 1, delay: 1 }}
-                  points="50,15 85,50 50,85 20,50" 
-                  fill="rgba(13, 89, 242, 0.3)" 
-                  stroke="#0d59f2" 
-                  strokeWidth="1.5" 
-                />
-                <text x="50" y="6" fontSize="5" textAnchor="middle" fill="#666">BACKEND</text>
-                <text x="96" y="52" fontSize="5" textAnchor="start" fill="#666">DESIGN</text>
-                <text x="50" y="98" fontSize="5" textAnchor="middle" fill="#666">DEVOPS</text>
-                <text x="4" y="52" fontSize="5" textAnchor="end" fill="#666">FRONTEND</text>
-              </svg>
             </div>
           </GlassCard>
 
@@ -563,27 +444,35 @@ export default function App() {
             </div>
           </GlassCard>
 
-          {/* Confidence Card */}
-          <GlassCard className="md:col-span-4 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden">
+          {/* Hiring Confidence */}
+          <GlassCard className="md:col-span-8 p-8 flex flex-col md:flex-row items-center justify-between text-center md:text-left relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent" />
             <div className="relative z-10">
-              <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Hiring Confidence</h3>
-              <motion.span 
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-7xl font-bold font-mono text-green-400"
-              >
-                92%
-              </motion.span>
-              <div className="mt-8 flex flex-col gap-2">
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Risk Level:</span>
-                  <span className="text-[10px] text-green-400 font-bold uppercase px-2 py-0.5 bg-green-500/10 rounded">Ultra Low</span>
+              <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Hiring Confidence</h3>
+              <div className="flex items-center gap-6">
+                <motion.span 
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-8xl font-bold font-mono text-green-400"
+                >
+                  92%
+                </motion.span>
+                <div className="hidden md:block space-y-2">
+                  <div className="px-3 py-1 bg-green-500/10 rounded-lg border border-green-500/20 text-green-400 text-xs font-bold uppercase">Ultra Low Risk</div>
+                  <div className="px-3 py-1 bg-[#0d59f2]/10 rounded-lg border border-[#0d59f2]/20 text-[#00f2ff] text-xs font-bold uppercase">High Signal</div>
                 </div>
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Leadership:</span>
-                  <span className="text-[10px] text-[#00f2ff] font-bold uppercase px-2 py-0.5 bg-[#0d59f2]/10 rounded">High Signal</span>
-                </div>
+              </div>
+            </div>
+            <div className="relative z-10 mt-8 md:mt-0 flex gap-4">
+              <div className="p-6 bg-white/5 rounded-3xl border border-white/5">
+                <Activity className="w-6 h-6 text-[#0d59f2] mb-2 mx-auto" />
+                <p className="text-[10px] text-gray-500 uppercase font-bold">Health</p>
+                <p className="text-xl font-mono">100%</p>
+              </div>
+              <div className="p-6 bg-white/5 rounded-3xl border border-white/5">
+                <TrendingUp className="w-6 h-6 text-[#00f2ff] mb-2 mx-auto" />
+                <p className="text-[10px] text-gray-500 uppercase font-bold">Growth</p>
+                <p className="text-xl font-mono">+12.4%</p>
               </div>
             </div>
           </GlassCard>
@@ -599,10 +488,10 @@ export default function App() {
               Access a leaderboard of AI-analyzed developers based on GitHub activity, coding performance, and verified skills.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <button className="w-full sm:w-auto px-10 py-5 bg-[#0d59f2] text-white font-bold rounded-lg shadow-2xl shadow-[#0d59f2]/30 hover:bg-[#0d59f2]/90 transition-all active:scale-95">
+              <button className="w-full sm:w-auto px-10 py-5 bg-[#0d59f2] text-white font-bold rounded-2xl shadow-2xl shadow-[#0d59f2]/30 hover:bg-[#0d59f2]/90 transition-all active:scale-95">
                 Start Hiring
               </button>
-              <button className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-lg hover:bg-white/10 transition-all active:scale-95">
+              <button className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all active:scale-95">
                 Get Your Skill Score
               </button>
             </div>
@@ -611,9 +500,8 @@ export default function App() {
       </main>
 
       <footer className="py-12 border-t border-white/5 text-center text-[10px] text-gray-600 uppercase tracking-[0.3em] font-medium">
-        © 2024 Skillmeter Protocol. Built for the future of tech hiring.
+        © 2026 Skillmeter Protocol. Built for the future of tech hiring.
       </footer>
     </div>
   );
 }
-
